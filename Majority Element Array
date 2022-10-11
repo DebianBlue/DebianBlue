@@ -1,0 +1,40 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+  public static void main (String[] args) throws java.lang.Exception{
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        for(int i=0;i<n;i++){
+          arr[i] = sc.nextInt();
+        }
+        MajorityElement(arr);
+        sc.close();
+  }
+      //Using Moore's Vote Algorithm
+  static void MajorityElement(int [] arr){
+              int n = arr.length;
+              int resIndex = 0;
+              int count = 1;
+              for(int i=1;i<n;i++){
+                if(arr[i] == arr[resIndex]){
+                  count++;
+                }
+                else count--;
+                if(count == 0){
+                  resIndex = i;
+                  count = 1;
+                }
+              }
+              int pointer = 0;
+              for(int i=0;i<n;i++){
+                if(arr[i] == arr[resIndex]) pointer++;
+              }
+              //Given that majority element exists
+              //You may assume that the array is non-empty and the majority element always exist in the array
+              if(pointer > n/2) System.out.println(arr[resIndex]);
+      }
+}
